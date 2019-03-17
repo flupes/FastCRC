@@ -31,12 +31,16 @@
 #define FastCRC_tables
 #include "inttypes.h"
 
+#if !defined(ARDUINO_SAMD_ZERO)
 #if !defined(__SAM3X8E__)
-#if defined(__AVR__ ) || defined(__IMXRT1052__) || defined(__IMXRT1062__) || defined(ARDUINO_ARCH_STM32F1)
+#if defined(__AVR__ ) || defined(__IMXRT1052__) || defined(__IMXRT1062__)
 #include <avr/pgmspace.h>
 #else
 #include <pgmspace.h>	
 #endif
+#endif
+#else
+#define PROGMEM
 #endif
 
 const uint8_t crc_table_crc7[256] PROGMEM = {
